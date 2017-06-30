@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <ul class=entries>
+  {% if up %}
+    <li><h2><a href='{{ up }}'>..</a></h2></li>
+  {% endif %}
+
+  </ul>
+  <br>
+  <ul class=entries>
+  {% for entry in image_entries %}
+    <li><img src='/static/images/{{ path }}/.thumbnail/{{ entry }}'><br><body><a href='{{ path }}/{{ entry }}'>{{ entry }}</a></body></li>
+  {% else %}
+    <li><em>No image files</em></li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}

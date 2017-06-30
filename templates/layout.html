@@ -1,0 +1,13 @@
+<!doctype html>
+<title>Species Specific Download and View your Photos</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <img src='/static/sslogo.png' width='200px'/>
+  <h1>Images</h1>
+  <div class=metanav>
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>
