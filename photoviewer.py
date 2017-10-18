@@ -15,8 +15,8 @@ app = Flask(__name__)
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    # PHOTO_DIR='/home/pi/dtp/',
-    PHOTO_DIR='static/images/',
+    PHOTO_DIR='/home/pi/dtp/',
+    # PHOTO_DIR='static/images/',
     THUMB_SIZE=(128, 128)
 ))
 app.config.from_envvar('PHOTOVIEWER_SETTINGS', silent=True)
