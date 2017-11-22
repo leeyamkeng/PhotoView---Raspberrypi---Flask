@@ -74,7 +74,7 @@ def species():
 @app.route('/activity/', methods=['POST'])
 def activity():
 	recentactivity = "Recent Activity"
-	animals = ['Deer', 'Hog', 'Black Bear']
+	animals = ['Whitetail Deer', 'Hog', 'Black Bear']
 	timezones = [
 		'12AM - 3AM',
 		'3AM - 6AM',
