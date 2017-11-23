@@ -7,4 +7,4 @@ copyfile('/home/pi/demo/demo.py', '/home/pi/harpu.py')
 #time.sleep(2)
 os.system('lxterminal -e python /home/pi/harpu.py')
 demomessage = "Machine Now in Demo Mode"
-print "Done"
+print ("Done")

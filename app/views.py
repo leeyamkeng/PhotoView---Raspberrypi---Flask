@@ -86,12 +86,10 @@ def activity():
 		'9PM - 12AM'
 	]
 	data_item = [[0 for k in range(3)] for j in range(8)]
-	print ('data_item', data_item)
 	cur = mysql.connection.cursor()
 	print ('connected !!')
 	cur.execute('''SELECT * FROM records''')
 	results = [dict(animal=row[1], date=row[3], timezone=row[4]) for row in cur.fetchall()]
-	print ('results ====', results)
 	datelist = []
 	for item in results:
 		if item['date'] in datelist:
@@ -239,7 +237,7 @@ def delete(filename):
 			
 @app.route('/thumb/<path:path>')
 def thumb(path):
-	print ('--- path----', path)
+	# print ('--- path----', path)
 	return send_from_directory('/home/pi/deer/.thumbnail/', path)
 
 # End of plugin by Lee Yam Keng
