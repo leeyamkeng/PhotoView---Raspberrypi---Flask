@@ -13,8 +13,6 @@ import glob
 from PIL import Image
 from shutil import copyfile
 
- 
- 
 # Threaded class for performance improvement
 class VideoStream:
     def __init__(self, src=0):
