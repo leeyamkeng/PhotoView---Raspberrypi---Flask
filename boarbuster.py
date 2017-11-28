@@ -124,43 +124,43 @@ while hog < 1:
                 ret, frame = cap.read()
                 fct += 1
                 if ret and fct > 300:
-                        fgmask = bgsMOG.apply(frame)
-                        # To find the contours of the objects
-                        _, contours, hierarchy = cv2.findContours(fgmask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-                        #cv2.drawContours(frame,contours,-1,(0,255,0),cv2.cv.CV_FILLED,32)
-                        try: hierarchy = hierarchy[0]
-                        except: hierarchy = []
-                        a = []
-                        for contour, hier in zip(contours, hierarchy):
-                                if (hog < 2) and (time.time() < timeout):
-                                        (x, y, w, h) = cv2.boundingRect(contour)
-                                        if w > 30 and h > 30:
-                                                width = str(w)
-                                                height = str(h)
-                                                dimension = width + ", " + height
-                                                dimension1 = dimension
-                                                cv2.rectangle(frame, (x, y), (x + w, y + h), (147, 20, 255), 1)
-                                                cv2.putText(frame, dimension1, (x, y + h + 12), 0, 0.5, (147, 20, 255))
-                                                (x, y, w, h) = cv2.boundingRect(contour)
+                    fgmask = bgsMOG.apply(frame)
+                    # To find the contours of the objects
+                    _, contours, hierarchy = cv2.findContours(fgmask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                    #cv2.drawContours(frame,contours,-1,(0,255,0),cv2.cv.CV_FILLED,32)
+                    try: hierarchy = hierarchy[0]
+                    except: hierarchy = []
+                    a = []
+                    for contour, hier in zip(contours, hierarchy):
+                        if (hog < 2) and (time.time() < timeout):
+                            (x, y, w, h) = cv2.boundingRect(contour)
+                            if w > 30 and h > 30:
+                                width = str(w)
+                                height = str(h)
+                                dimension = width + ", " + height
+                                dimension1 = dimension
+                                cv2.rectangle(frame, (x, y), (x + w, y + h), (147, 20, 255), 1)
+                                cv2.putText(frame, dimension1, (x, y + h + 12), 0, 0.5, (147, 20, 255))
+                                (x, y, w, h) = cv2.boundingRect(contour)
 
-                                                x1 = w / 2
-                                                y1 = h / 2
-                                                cx = x + x1
-                                                cy = y + y1
-                                                a.append([cx, cy])
-                                                area = cv2.contourArea(contour)
-                                                if (len(a) >= numcts) and (hog < 1): 
-                                                        
-                                                        cv2.imwrite("detected/photo%s.jpg" % num, frame)
-                                                        num += 1
-                                                        if detect(frame) == 'Hog':
-                                                                print ('Alarm! A group of Hogs was detected. please trigger the trap!')
-                                                                cv2.imwrite("trapped/photo%s.jpg" % hognum, frame)
-                                                                hognum +=1
-                                                                #hog += 1
-                                                                break
-                                                        else:
-                                                                break
+                                x1 = w / 2
+                                y1 = h / 2
+                                cx = x + x1
+                                cy = y + y1
+                                a.append([cx, cy])
+                                area = cv2.contourArea(contour)
+                                if (len(a) >= numcts) and (hog < 1): 
+                                        
+                                    cv2.imwrite("detected/photo%s.jpg" % num, frame)
+                                    num += 1
+                                    if detect(frame) == 'Hog':
+                                        print ('Alarm! A group of Hogs was detected. please trigger the trap!')
+                                        cv2.imwrite("trapped/photo%s.jpg" % hognum, frame)
+                                        hognum +=1
+                                        #hog += 1
+                                        break
+                                    else:
+                                        break
                         #cv2.imshow('BGS', fgmask)
                         cv2.imshow('Ori+Bounding Box', frame)
                         key = cv2.waitKey(100)
